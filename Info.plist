@@ -19,7 +19,7 @@
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
-		<string>src/html/global.html</string>
+		<string>public/html/global.html</string>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
@@ -46,8 +46,8 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>src/js/addCSS.js</string>
-				<string>src/js/addToBasket.js</string>
+				<string>public/js/addCSS.min.js</string>
+				<string>public/js/addToBasket.min.js</string>
 			</array>
 		</dict>
 	</dict>

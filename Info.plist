@@ -20,22 +20,11 @@
 	<dict>
 		<key>Global Page</key>
 		<string>src/html/global.html</string>
-		<key>Popovers</key>
-		<array>
-			<dict>
-				<key>Filename</key>
-				<string>src/html/popover.html</string>
-				<key>Height</key>
-				<integer>500</integer>
-				<key>Identifier</key>
-				<string>popover</string>
-				<key>Width</key>
-				<integer>220</integer>
-			</dict>
-		</array>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
+				<key>Command</key>
+				<string>command</string>
 				<key>Identifier</key>
 				<string>Giftibly</string>
 				<key>Image</key>
@@ -50,6 +39,17 @@
 				<string>Giftibly</string>
 			</dict>
 		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>src/js/addCSS.js</string>
+				<string>src/js/addToBasket.js</string>
+			</array>
+		</dict>
 	</dict>
 	<key>Description</key>
 	<string>Integrates your Safari browser with the Giftibly to help make your web surfing more reliable</string>

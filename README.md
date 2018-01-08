@@ -14,7 +14,6 @@ To build, simply run the following commands:
 ## Places to update the version
 
 - Info.plist - update version
-- js/global.js - update header
 
 
 ## License

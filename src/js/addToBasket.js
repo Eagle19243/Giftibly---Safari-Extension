@@ -1,4 +1,5 @@
 GIFTIBLY = {
+
     addToBasket: function() {
 
         function createElement(tag, className, id) {
@@ -38,73 +39,6 @@ GIFTIBLY = {
                 }
                 event.returnValue = false;
             }
-        }
-
-        removeExtDom();
-
-        var height = Math.max(document.body.scrollHeight, document.body.offsetHeight) + 'px';
-
-        var iframe = createElement('iframe', 'GFTBmask');
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.style.height = height;
-        
-        var overlay = createElement('div', 'GFTBmask', 'GFTBoverlay');
-        overlay.style.height = height;
-
-        var savetobasketCnt = createElement('div', 'GFTBmask', 'GFTBsavetobasketCnt');
-        savetobasketCnt.innerHTML = '<div id="GFTBheader"><div id="GFTBclose"></div></div><div id="GFTBproductCnt"></div>';
-
-        document.body.appendChild(iframe);
-        document.body.appendChild(overlay);
-        document.body.appendChild(savetobasketCnt);
-        document.getElementById('GFTBclose').addEventListener('click', close);
-
-        document.addEventListener("keydown", function(e){
-            if(e.keyCode == 27) { close(); }
-        });
-
-        var productCnt = savetobasketCnt.lastChild;
-        productCnt.addEventListener("DOMMouseScroll", stopScroll);
-        productCnt.addEventListener("mousewheel", stopScroll);
-
-        var images = [],
-            minSize = 100,
-            imageRatio = 3,
-            squareWidth = 200,
-            thumbWidth = 200,
-            popup,
-            popupWidth = 900,
-            popupHeight = 480
-        ;
-        
-        for(var i=0; i<document.images.length; i++) {
-            var img = document.images[i];
-
-            if(!img.src.replace(/\s/g, '')) {
-                continue;
-            }
-
-            var w = img.width,
-                h = img.height,
-                longSide = Math.max(w,h),
-                shortSide = Math.min(w,h)
-            ;
-
-            if(img.src!=='' && longSide >= minSize && (longSide/shortSide) <= imageRatio) {
-                images.push(img);
-            }
-        }
-
-        if(!images.length) {
-            removeExtDom();
-            alert('Giftibly:\nSorry, there doesn\'t appear to be any usable images on this page. Please try another.');
-        }
-
-        images.sort(function(a,b) { return (b.width * b.height) - (a.width * a.height); });
-
-        for(var i=0; i < images.length; i++){ 
-            addImage(images[i].src, images[i].alt);
         }
 
         function addImage(imageSrc, imageAlt) {
@@ -202,13 +136,82 @@ GIFTIBLY = {
             window.open(popup, 'GIFTIBLY', 'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
             close();
         }
+
+        removeExtDom();
+
+        var height = Math.max(document.body.scrollHeight, document.body.offsetHeight) + 'px';
+
+        var iframe = createElement('iframe', 'GFTBmask');
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.style.height = height;
+        
+        var overlay = createElement('div', 'GFTBmask', 'GFTBoverlay');
+        overlay.style.height = height;
+
+        var savetobasketCnt = createElement('div', 'GFTBmask', 'GFTBsavetobasketCnt');
+        savetobasketCnt.innerHTML = '<div id="GFTBheader"><div id="GFTBclose"></div></div><div id="GFTBproductCnt"></div>';
+
+        document.body.appendChild(iframe);
+        document.body.appendChild(overlay);
+        document.body.appendChild(savetobasketCnt);
+        document.getElementById('GFTBclose').addEventListener('click', close);
+
+        document.addEventListener("keydown", function(e){
+            if(e.keyCode == 27) { close(); }
+        });
+
+        var productCnt = savetobasketCnt.lastChild;
+        productCnt.addEventListener("DOMMouseScroll", stopScroll);
+        productCnt.addEventListener("mousewheel", stopScroll);
+
+        var images = [],
+            minSize = 100,
+            imageRatio = 3,
+            squareWidth = 200,
+            thumbWidth = 200,
+            popup,
+            popupWidth = 900,
+            popupHeight = 480
+        ;
+        
+        for(var i=0; i<document.images.length; i++) {
+            var img = document.images[i];
+
+            if(!img.src.replace(/\s/g, '')) {
+                continue;
+            }
+
+            var w = img.width,
+                h = img.height,
+                longSide = Math.max(w,h),
+                shortSide = Math.min(w,h)
+            ;
+
+            if(img.src!=='' && longSide >= minSize && (longSide/shortSide) <= imageRatio) {
+                images.push(img);
+            }
+        }
+
+        if(!images.length) {
+            removeExtDom();
+            alert('Giftibly:\nSorry, there doesn\'t appear to be any usable images on this page. Please try another.');
+        }
+
+        images.sort(function(a,b) { return (b.width * b.height) - (a.width * a.height); });
+
+        for(var i=0; i < images.length; i++){ 
+            addImage(images[i].src, images[i].alt);
+        }
     }
 };
 
 safari.self.addEventListener("message", function(event){
-    if (event.name == "addToBasket"){
-        GIFTIBLY.addToBasket();
-    } else if (event.name == "addCSS"){
-        GIFTIBLYSTYLE.loadCSS();
+    if (window.top === window) {
+        if (event.name == "addToBasket"){
+            GIFTIBLY.addToBasket();
+        } else if (event.name == "addCSS"){
+            GIFTIBLYSTYLE.loadCSS();
+        }
     }
 }, false);

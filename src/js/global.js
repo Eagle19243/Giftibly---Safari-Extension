@@ -1,4 +1,4 @@
 safari.application.addEventListener("command", function(){
-    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("type", "addCSS");
-    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("type", "addToBasket");
+    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("addCSS", "");
+    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("addToBasket", "");
 }, false);

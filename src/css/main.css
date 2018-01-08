@@ -16,7 +16,7 @@
 }
 
 #GFTBsavetobasketCnt #GFTBheader {
-	background: #f5b655 url("icons/logo.png") no-repeat center center;
+	background: #f5b655 url("../../public/img/logo.png") no-repeat center center;
 	height: 60px;
 	line-height: 60px;
 	border: none;
@@ -30,7 +30,7 @@
 	right: 10px;
 	height: 28px;
 	width: 28px;
-	background: url("icons/closeBtn.png") no-repeat;
+	background: url("../../public/img/closeBtn.png") no-repeat;
 	color: #ccc;
 	cursor: pointer;
 }

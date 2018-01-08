@@ -206,9 +206,9 @@ GIFTIBLY = {
 };
 
 safari.self.addEventListener("message", function(event){
-    if (event.message["type"] == "addToBasket"){
+    if (event.name == "addToBasket"){
         GIFTIBLY.addToBasket();
-    } else if (event.message["type"] == "addCSS"){
+    } else if (event.name == "addCSS"){
         GIFTIBLYSTYLE.loadCSS();
     }
 }, false);
